@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Agro-Forte | Sustentabilidade, Educação e Reconhecimento</title>
+    <style>
+        :root {
+            --verde-escuro: #1b4332;
+            --verde-principal: #2d6a4f;
+            --verde-grama: #40916c;
+            --verde-claro: #74c69d;
+            --verde-suave: #d8f3dc;
+            --creme: #f4f9f4;
+            --marrom-escuro: #212529;
+            --texto-corpo: #495057;
+            --branco: #ffffff;
+            --ouro: #d4af37;
+            --alerta-sucesso: #2a9d8f;
+            --alerta-erro: #e76f51;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: var(--marrom-escuro);
+            line-height: 1.8;
+        }
+
+        /* Hero Banner */
+        header {
+            background: linear-gradient(rgba(27, 67, 50, 0.85), rgba(45, 106, 79, 0.9)), 
+                        url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            color: var(--branco);
+            text-align: center;
+            padding: 8rem 1rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3.5rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            margin: 1.5rem 0 0 0;
+            font-style: italic;
+            font-size: 1.5rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        /* Container Principal */
+        main {
+            max-width: 1100px;
+            margin: -4rem auto 4rem auto;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Seções Estilizadas */
+        section {
+            background-color: var(--branco);
+            padding: 3.5rem;
+            border-radius: 24px;
+            margin-bottom: 4rem;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.03);
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+
+        h2 {
+            color: var(--verde-escuro);
+            font-size: 2.2rem;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h2::after {
+            content: '';
+            flex-grow: 1;
+            height: 3px;
+            background: linear-gradient(to right, var(--verde-claro), transparent);
+            margin-left: 15px;
+        }
+
+        p {
+            font-size: 1.15rem;
+            color: var(--texto-corpo);
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .destaque-texto {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--verde-principal);
+            border-left: 4px solid var(--verde-grama);
+            padding-left: 1rem;
+            margin: 2rem 0;
+        }
+
+        /* Imagens Responsivas */
+        .img-bloco {
+            width: 100%;
+            max-height: 450px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin: 2rem 0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        /* Seção Monumental à FAEP */
+        .faep-premium {
+            background: linear-gradient(135deg, #ffffff 0%, #fffdf7 100%);
+            border: 2px solid var(--ouro);
+            position: relative;
+        }
+
+        .faep-premium h2 {
+            color: #8a6d1c;
+        }
+
+        .selo-ouro {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: var(--ouro);
+            color: var(--branco);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(212,175,55,0.3);
+        }
+
+        /* Grid Multimídia de Pilares */
+        .pilar-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .pilar-card {
+            background-color: var(--branco);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+            border: 1px solid #edf2f7;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .pilar-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.06);
+        }
+
+        .pilar-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .pilar-info {
+            padding: 2rem;
+        }
+
+        .pilar-info h3 {
+            margin-top: 0;
+            color: var(--verde-principal);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Estrutura Dupla de Quizzes */
+        .wrapper-quizzes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .caixa-quiz {
+            background-color: var(--creme);
+            border: 2px dashed var(--verde-grama);
+            padding: 2.5rem;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-quiz {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            padding-bottom: 0.5rem;
+        }
+
+        .titulo-quiz {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--verde-escuro);
+        }
+
+        .contador-quiz {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: var(--verde-grama);
+            background-color: var(--verde-suave);
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+        }
+
+        .texto-pergunta {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--marrom-escuro);
+            min-height: 60px;
+        }
+
+        .grupo-botoes button {
+            display: block;
+            width: 100%;
+            background-color: var(--branco);
+            border: 2px solid var(--verde-claro);
+            color: var(--marrom-escuro);
+            padding: 1rem;
+            margin-bottom: 0.8rem;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 1.05rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .grupo-botoes button:hover:not(:disabled) {
+            background-color: var(--verde-principal);
+            color: var(--branco);
+            border-color: var(--verde-principal);
+        }
+
+        .painel-feedback {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 10px;
+            font-weight: 600;
+            text-align: center;
+            min-height: 25px;
+            font-size: 1.1rem;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: var(--verde-escuro);
+            color: var(--branco);
+            text-align: center;
+            padding: 4rem 1rem;
+            margin-top: 8rem;
+        }
+
+        footer p {
+            text-align: center;
+            color: #b7e4c7;
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Portal Agro-Forte</h1>
+        <p>Construindo pontes entre a ciência da terra, a educação nas escolas e o futuro sustentável.</p>
+    </header>
+
+    <main>
+
+        <section id="sustentabilidade-profunda">
+            <h2>🌱 A Ciência e a Prática do Agro Sustentável</h2>
+            <p>O conceito de sustentabilidade no agronegócio não é uma tendência passageira, mas sim uma evolução científica indispensável para a sobrevivência do planeta. O **Agro Sustentável** redefine a produção de alimentos ao provar que o desenvolvimento econômico pode andar em perfeita harmonia com os ciclos biológicos da natureza.</p>
+            
+            <img class="img-bloco" src="https://images.unsplash.com/photo-1625246333195-78d9c38ad451?auto=format&fit=crop&w=1100&q=80" alt="Tecnologia aplicada ao manejo sustentável da lavoura">
+            
+            <p>Dentre as técnicas que compõem este ecossistema, destacam-se a **Integração Lavoura-Pecuária-Floresta (ILPF)**, que otimiza o uso da terra consorciando diferentes atividades em uma mesma área, gerando benefícios mútuos para o solo e para o produtor. Somado a isso, o manejo biológico de pragas reduz drasticamente o uso de defensivos químicos sintéticos, priorizando predadores naturais e bioinsumos que mantêm a fauna nativa viva.</p>
+            
+            <div class="destaque-texto">
+                "Sustentabilidade no campo significa produzir mais e melhor, utilizando menos recursos e garantindo a resiliência ecológica para as próximas gerações."
+            </div>
+            
+            <p>A tecnologia também se faz presente através da agricultura de precisão. Sensores instalados no solo e o imageamento por drones coletam dados climáticos e hídricos em tempo real, permitindo que os produtores apliquem água e nutrientes na medida milimétrica necessária. Isso elimina desperdícios, conserva os lençóis freáticos e mitiga os impactos das mudanças climáticas.</p>
+        </section>
+
+        <section id="homenagem-faep" class="faep-premium">
+            <div class="selo-ouro">Reconhecimento Máximo</div>
+            <h2>⭐ O Trabalho Inestimável do Sistema FAEP</h2>
+            <p>Falar sobre o progresso e a conscientização do campo no Paraná sem citar o **Sistema FAEP** (Federação da Agricultura do Estado do Paraná) é impossível. Esta prestigiada instituição é o verdadeiro motor de transformação social, técnica e humana do nosso estado. Queremos manifestar nossa profunda admiração e aplaudir de pé o legado construído por eles.</p>
+            
+            <img class="img-bloco" src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=1100&q=80" alt="Educação e cidadania transformando realidades">
+            
+            <p>Através de uma liderança brilhante e de uma visão de futuro impecável, a FAEP compreendeu que a maior riqueza do campo não se mede em sacas colhidas, mas sim na mente de quem trabalha e estuda. Ao financiar, organizar e disseminar o **Programa Agrinho**, a FAEP promove o maior projeto de responsabilidade socioambiental do sul do país.</p>
+            <p>O impacto é avassalador: de forma totalmente gratuita, escolas públicas recebem materiais pedagógicos do mais alto nível, enquanto professores ganham apoio estrutural para trabalhar cidadania, ética e ecologia com seus alunos. A dedicação da equipe da FAEP é uma lição de patriotismo e amor ao próximo. Vocês plantam conhecimento nas salas de aula para colher os cidadãos conscientes que guiarão o Brasil amanhã!</p>
+        </section>
+
+        <section id="comunidade-agrinho">
+            <h2>👥 Os Elos de Ouro que Movem o Agrinho</h2>
+            <p>Nenhum grande projeto se sustenta sem pessoas inspiradas trabalhando juntas. O Programa Agrinho ganha vida por meio de uma rede humana extraordinária:</p>
+            
+            <div class="pilar-container">
+                <div class="pilar-card">
+                    <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=400&q=80" alt="Professor em sala de aula">
+                    <div class="pilar-info">
+                        <h3>👩‍🏫 Professores Inspiradores</h3>
+                        <p>A força criativa que traduz as apostilas e livros da FAEP em experiências práticas de cidadania e amor à terra para os estudantes.</p>
+                    </div>
+                </div>
+                <div class="pilar-card">
+                    <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=400&q=80" alt="Técnicos planejando">
+                    <div class="pilar-info">
+                        <h3>🚜 Corpo Técnico da FAEP</h3>
+                        <p>Especialistas, pedagogos e gestores que trabalham incansavelmente nos bastidores para levar educação de ponta ao interior paulista e paranaense.</p>
+                    </div>
+                </div>
+                <div class="pilar-card">
+                    <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=400&q=80" alt="Alunos estudando juntos">
+                    <div class="pilar-info">
+                        <h3>🌱 Alunos Conectados</h3>
+                        <p>Nós, estudantes do Ensino Médio, que absorvemos essa bagagem cultural para desenvolver pesquisas, sites, redações e mudar nossa comunidade.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="central-testes">
+            <h2>🧠 Central de Desafios Interativos</h2>
+            <p>Para testar seu foco, dividimos nossa avaliação em dois blocos temáticos especiais. Escolha as respostas com atenção!</p>
+            
+            <div class="wrapper-quizzes">
+                
+                <div class="caixa-quiz" id="bloco-quiz-1">
+                    <div class="header-quiz">
+                        <span class="titulo-quiz">Quiz 1: Sustentabilidade</span>
+                        <span class="contador-quiz" id="progresso-q1">Pergunta 1/4</span>
+                    </div>
+                    <div class="texto-pergunta" id="pergunta-q1">Carregando pergunta de sustentabilidade...</div>
+                    <div class="grupo-botoes" id="botoes-q1"></div>
+                    <div class="painel-feedback" id="feedback-q1"></div>
+                </div>
+
+                <div class="caixa-quiz" id="bloco-quiz-2">
+                    <div class="header-quiz">
+                        <span class="titulo-quiz">Quiz 2: Legado FAEP</span>
+                        <span class="contador-quiz" id="progresso-q2">Pergunta 1/4</span>
+                    </div>
+                    <div class="texto-pergunta" id="pergunta-q2">Carregando pergunta institucional...</div>
+                    <div class="grupo-botoes" id="botoes-q2"></div>
+                    <div class="painel-feedback" id="feedback-q2"></div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Plataforma Desenvolvida com Orgulho por uma Aluna do 1º Ano do Ensino Médio</p>
+        <p>Projeto Agro-Forte em Homenagem e Apoio ao Sistema FAEP/SENAR • © 2026</p>
+    </footer>
+
+    <script>
+        // Dados do Quiz 1: Agro Sustentável
+        const bancoQ1 = [
+            {
+                p: "1. O que significa a sigla ILPF dentro das práticas do Agro Sustentável?",
+                a: ["Integração Lavoura-Pecuária-Floresta.", "Indústria de Laticínios e Produtos Frescos.", "Instalação de Lajes em Pequenas Fazendas."],
+                c: 0
+            },
+            {
+                p: "2. Como a agricultura de precisão ajuda a economizar recursos naturais?",
+                a: ["Substituindo toda a água do planeta por produtos sintéticos.", "Utilizando sensores e drones para aplicar água e nutrientes na medida exata.", "Deixando as lavouras sem nenhum tipo de cuidado."],
+                c: 1
+            },
+            {
+                p: "3. Qual é o benefício direto do Manejo Biológico de Pragas?",
+                a: ["Aumentar o uso de venenos químicos pesados.", "Reduzir o uso de agroquímicos usando predadores biológicos naturais.", "Acelerar o desgaste dos nutrientes do solo."],
+                c: 1
+            },
+            {
+                p: "4. Qual é o principal objetivo de manter o solo protegido com palhada no plantio direto?",
+                a: ["Evitar a erosão, segurar a umidade e proteger a terra do calor extremo.", "Deixar a plantação com visual colorido para fotos de satélite.", "Impedir que as sementes entrem em contato profundo com a terra."],
+                c: 0
+            }
+        ];
+
+        // Dados do Quiz 2: Sistema FAEP / Agrinho
+        const bancoQ2 = [
+            {
+                p: "1. Qual é o principal foco de impacto social do Programa Agrinho da FAEP?",
+                a: ["Vender tratores importados para as escolas públicas.", "Levar educação, ética, cidadania e orgulho do campo de forma gratuita.", "Treinar alunos para trabalhar apenas em escritórios urbanos."],
+                c: 1
+            },
+            {
+                p: "2. De acordo com o texto, de que forma o Sistema FAEP enxerga a maior riqueza do campo?",
+                a: ["Apenas no volume total de sacas colhidas no ano.", "Na mente, na educação e na valorização das pessoas que trabalham e estudam.", "Exclusivamente nos lucros gerados pelas grandes exportações."],
+                c: 1
+            },
+            {
+                p: "3. Como o material didático desenvolvido pela FAEP chega até as escolas de nossa região?",
+                a: ["É distribuído de forma totalmente gratuita e com altíssimo nível técnico.", "É vendido por altos valores mensais para os colégios.", "Os alunos precisam baixar em plataformas pagas na internet."],
+                c: 0
+            },
+            {
+                p: "4. Quem são considerados no texto como os elos de ouro que transmitem essa bagagem na classe?",
+                a: ["Os Professores Inspiradores que acolhem o projeto com dedicação.", "Os sistemas operacionais automatizados de informática.", "Apenas os fiscais de provas de colégios particulares."],
+                c: 0
+            }
+        ];
+
+        // Gerenciador do Quiz 1
+        let atualQ1 = 0, pontosQ1 = 0;
+        function rodarQ1() {
+            const feedback = document.getElementById("feedback-q1");
+            feedback.innerText = "";
+            feedback.style.backgroundColor = "transparent";
+
+            if (atualQ1 < bancoQ1.length) {
+                document.getElementById("progresso-q1").innerText = `Pergunta ${atualQ1 + 1}/${bancoQ1.length}`;
+                document.getElementById("pergunta-q1").innerText = bancoQ1[atualQ1].p;
+                const areaBotoes = document.getElementById("botoes-q1");
+                areaBotoes.innerHTML = "";
+
+                bancoQ1[atualQ1].a.forEach((op, i) => {
+                    const btn = document.createElement("button");
+                    btn.innerText = op;
+                    btn.onclick = () => checarQ1(i);
+                    areaBotoes.appendChild(btn);
+                });
+            } else {
+                document.getElementById("progresso-q1").innerText = "Fim!";
+                document.getElementById("pergunta-q1").innerText = "Quiz Concluído com Sucesso! 🌱";
+                document.getElementById("botoes-q1").innerHTML = "";
+                feedback.style.backgroundColor = "var(--verde-suave)";
+                feedback.style.color = "var(--verde-escuro)";
+                feedback.innerText = `Você acertou ${pontosQ1} de ${bancoQ1.length} perguntas!`;
+            }
+        }
+
+        function checarQ1(escolha) {
+            const feedback = document.getElementById("feedback-q1");
+            const botoes = document.getElementById("botoes-q1").getElementsByTagName("button");
+            for(let b of botoes) b.disabled = true;
+
+            if(escolha === bancoQ1[atualQ1].c) {
+                pontosQ1++;
+                feedback.style.backgroundColor = "#e8f5e9";
+                feedback.style.color = "var(--alerta-sucesso)";
+                feedback.innerText = "🎉 Perfeito! Resposta correta!";
+            } else {
+                feedback.style.backgroundColor = "#ffe3e3";
+                feedback.style.color = "var(--alerta-erro)";
+                feedback.innerText = "💡 Quase! Releia a seção de Sustentabilidade!";
+            }
+            atualQ1++;
+            setTimeout(rodarQ1, 2000);
+        }
+
+        // Gerenciador do Quiz 2
+        let atualQ2 = 0, pontosQ2 = 0;
+        function rodarQ2() {
+            const feedback = document.getElementById("feedback-q2");
+            feedback.innerText = "";
+            feedback.style.backgroundColor = "transparent";
+
+            if (atualQ2 < bancoQ2.length) {
+                document.getElementById("progresso-q2").innerText = `Pergunta ${atualQ2 + 1}/${bancoQ2.length}`;
+                document.getElementById("pergunta-q2").innerText = bancoQ2[atualQ2].p;
+                const areaBotoes = document.getElementById("botoes-q2");
+                areaBotoes.innerHTML = "";
+
+                bancoQ2[atualQ2].a.forEach((op, i) => {
+                    const btn = document.createElement("button");
+                    btn.innerText = op;
+                    btn.onclick = () => checarQ2(i);
+                    areaBotoes.appendChild(btn);
+                });
+            } else {
+                document.getElementById("progresso-q2").innerText = "Fim!";
+                document.getElementById("pergunta-q2").innerText = "Quiz Concluído com Sucesso! ⭐";
+                document.getElementById("botoes-q2").innerHTML = "";
+                feedback.style.backgroundColor = "#fffdf0";
+                feedback.style.color = "#8a6d1c";
+                feedback.innerText = `Você acertou ${pontosQ2} de ${bancoQ2.length} perguntas!`;
+            }
+        }
+
+        function checarQ2(escolha) {
+            const feedback = document.getElementById("feedback-q2");
+            const botoes = document.getElementById("botoes-q2").getElementsByTagName("button");
+            for(let b of botoes) b.disabled = true;
+
+            if(escolha === bancoQ2[atualQ2].c) {
+                pontosQ2++;
+                feedback.style.backgroundColor = "#e8f5e9";
+                feedback.style.color = "var(--alerta-sucesso)";
+                feedback.innerText = "🎉 Brilhante! Você reconhece o valor da FAEP!";
+            } else {
+                feedback.style.backgroundColor = "#ffe3e3";
+                feedback.style.color = "var(--alerta-erro)";
+                feedback.innerText = "💡 Quase lá! Releia a seção sobre a FAEP!";
+            }
+            atualQ2++;
+            setTimeout(rodarQ2, 2000);
+        }
+
+        // Inicialização de ambos os quizzes
+        rodarQ1();
+        rodarQ2();
+    </script>
+</body>
+</html>
